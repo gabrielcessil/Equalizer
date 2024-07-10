@@ -7,10 +7,10 @@ load handel.mat
 % ** INPUTS **
 
 % Choose version played: (-1) Noised; (0) Original; (1) Filtered
-version = 0;  
+version = 1;  
 
 % Update the path for your specific case
-filename = 'C:\Users\gabri\Desktop\Posts\Audio processing - Wordpress/rum-and-finesse-220404.mp3';
+filename = 'C:\Users\gabri\Desktop\Projetos (todas referencias e arquivos)\Audio processing - Wordpress/rum-and-finesse-220404.mp3';
 SNR = 20; % Added signal-to-noise ratio 
 
 % Design relevant info 
@@ -22,11 +22,14 @@ GainBass = 1; % SubBass gain (0~1)
 GainMedium = 1; % Bass gain (0~1)
 
 % Filters specification 
-Amax = 8; % Maximum ripple in Passband(dB)
+Amax = 5; % Maximum ripple in Passband(dB)
 Amin = 10; % Minimum attenuaion in Stopband (dB)
 tran = 0.1; % Transition band fraction (0~1): How much of each band is transitional 
 
+%
+n = @(ws,Amin,Amax) ceil(log10( (10^(Amin/10)-1)/(sqrt(10^(Amax/10)-1).^2) )/(log10(ws)*2)); 
 
+%
  
 % ** COMPUTING **
 
