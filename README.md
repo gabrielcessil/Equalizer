@@ -4,4 +4,4 @@ The primary goal of this project is to create a voice equalizer that can effecti
 This guide will show you how to read an audio file, add noise for didactic purposes, design passband filters, filter the audio signal, and plot the results. The project was originally made during my college days with my college Guilherme Turatto for our Digital Signals Processing grade course mentored by Alexandro Barro Brito.
 
 
-![DFT Plot](DFT.png)
+![DFT Plot](FFT.png)
