@@ -13,10 +13,8 @@ First, we initialize MATLAB and set up the environment:
 % Choose version played:
 % (-1) Noised; (0) Original; (1) Filtered
 version = 1;  
-
 % Update the path for your specific case
 filename = 'C:\Users\user\Desktop\Posts/rum-and-finesse-220404.mp3';
-
 % Added signal-to-noise ratio 
 SNR = 20; 
 '''
