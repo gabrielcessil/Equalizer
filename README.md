@@ -59,6 +59,8 @@ $latex \hat{w_{s}} = (1+tran)$
 
 To improve our control of our settings, we can now plot the 'n' magnitude for multiple transients lenghts according to the relative value
 
+![Cutting ratio per filter's order](Cutting.png)
+
 Choosing as follows might lead to filters with 7th degree.
 
 ```matlab
@@ -171,6 +173,8 @@ The transfer functions are calculated using Butterworth method due to its monoto
 
 We can visualize the resulting filters in the Bode diagram:
 
+![Bode Diagram](Bode.png)
+
 
 The original sampling rate of 48k Hz could lead the filtered signal to oversampling if applied, since the higher work frequency is designed to be 2k Hz (24 times lower). The new sampling rate for the digital filters is determined so that they provide enough sampling of the desired actuation band. Regarding the Nyquist–Shannon theorem, a sampling rate was designed as five times the highest stopband frequency of each filter.
 
@@ -246,6 +250,8 @@ end
 
 We can plot the signal's magnitude variations over time, offering a comprehensive visual representation of the various stages of the audio processing pipeline.
 
+![Signals Magnitudes](Magnitudes.png)
+
 While the plot of audio magnitudes offers a visual comparison of signals, the differences between these signals can be subtle and may not be easily discernible to the human eye. This is where the Fourier Transform comes into play, providing a powerful tool to analyze and understand the frequency components of these signals in greater detail.
 
 The red and pink lines delimiter the work frequencies of the filters and the black line the sampling rate. The original audio spectrum has smooth amplitude until a huge drop around 24k Hz, indicating a clean signal with distinct frequency components as expected by a well recorded song sampled with 48k Hz.
@@ -256,4 +262,3 @@ The filtered spectrum exemplify the well-know phenomenon of replications along t
 
 I encourage everyone to download play the audios provided here.
 
-![DFT Plot](FFT.png)
