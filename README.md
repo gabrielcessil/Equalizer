@@ -53,17 +53,15 @@ and $$E = 10^{\frac{Amax}{10}}-1$$
 
 From the template of passlow to passband, we have that the normalized pass frequency is:
 
-$$ \hat{w_{s}} =  \frac{w_{s2}-w_{s1}}{w_{p2}-w_{p1}}$$
+$$\hat{w_{s}} = \frac{w_{s2}-w_{s1}}{w_{p2}-w_{p1}}$$
 
 Let's simplify this expression making $$ \hat{w_{s}}$$ be function of the size of the transient band we defined ('tran'), as follows:
 
-$$ w_{s1} = w_{p1}+\frac{tran}{2}\Delta w_{p}$$
-
-and $$ w_{s1} = w_{p2}-\frac{tran}{2}\Delta w_{p}$$
+$$w_{s1} = w_{p1}+\frac{tran}{2}\Delta w_{p}$$ and $$w_{s1} = w_{p2}-\frac{tran}{2}\Delta w_{p}$$
 
 where $$\Delta w_{p} = w_{p2}-w_{p1}$$ is the total work band size of the filter. Manipulating the equations, we find that for this equally spaced transient bands:
 
-$$ \hat{w_{s}} = (1+tran)$$
+$$\hat{w_{s}} = (1+tran)$$
 
 To improve our control of our settings, we can now plot the 'n' magnitude for multiple transients lenghts according to the relative value
 
