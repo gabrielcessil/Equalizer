@@ -61,7 +61,7 @@ To improve our control of our settings, we can now plot the 'n' magnitude for mu
 
 Choosing as follows might lead to filters with 7th degree.
 
-'''matlab
+```matlab
 Bass = [50 500]; % (Hz) Lower frequencies
 LowMedium = [500 2000]; % (Hz) Low-Medium frequencies
 
@@ -71,8 +71,8 @@ GainMedium = 1; % Bass gain (0~1)
 Amax = 5; % Maximum ripple in Passband(dB)
 Amin = 10; % Minimum attenuation in Stopband (dB)
 tran = 0.2; % Transition band fraction (0~1)
+```
 
-'''
 To read the audio and apply the noise:
 
 '''matlab
