@@ -37,13 +37,19 @@ The size of the transition band as a fraction of the total actuated frequencies 
 
 In order to improve the tuning of these designed characteristics, we can manipulate the equations and plot the relationship between the variables:
 
-Let 'n' be the resulting required degree, 'Amax' the maximum ripple, 'Amin' the minimum attenuation, $$ w_{s1}$$ and $$ w_{s2}$$ the stopping frequencies,  $$ w_{p1}$$ and $$ w_{p2}$$ the passing frequencies.
+Let 'n' be the resulting required degree, 'Amax' the maximum ripple, 'Amin' the minimum attenuation, 
+
+$$w_{s1}$$ and $$w_{s2}$$ the stopping frequencies,  $$w_{p1}$$ and $$w_{p2}$$ the passing frequencies.
 
 From the Butterworth design equations, we have that the minimum degree is:
 
 $$n = ceil(  log_{\hat{w_{s}}}(\frac{e}{E}) )$$
 
-where: $$e = 10^{\frac{Amin}{10}}-1$$ and E = $$ 10^{\frac{Amax}{10}}-1$$
+where: 
+
+$$e = 10^{\frac{Amin}{10}}-1$$ 
+
+and $$E = 10^{\frac{Amax}{10}}-1$$
 
 From the template of passlow to passband, we have that the normalized pass frequency is:
 
@@ -55,7 +61,7 @@ $$ w_{s1} = w_{p1}+\frac{tran}{2}\Delta w_{p}$$
 
 and $$ w_{s1} = w_{p2}-\frac{tran}{2}\Delta w_{p}$$
 
-where $$ \Delta w_{p} = w_{p2}-w_{p1}$$ is the total work band size of the filter. Manipulating the equations, we find that for this equally spaced transient bands:
+where $$\Delta w_{p} = w_{p2}-w_{p1}$$ is the total work band size of the filter. Manipulating the equations, we find that for this equally spaced transient bands:
 
 $$ \hat{w_{s}} = (1+tran)$$
 
