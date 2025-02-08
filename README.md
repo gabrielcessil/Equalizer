@@ -201,17 +201,21 @@ T2z = c2d(T2, Ts_filtros, 'zoh');
 The filtered responses are computed with the MATLAB function 'filter' regarding a resampled version of the original audio signal that matches the channel's common sampling rate.
 
 ```matlab
-% Resampling the original signal to match the filtersaudio_signal_resampled = ResambleSignal(noisy_audio_signal, Fs, Fs_filtros);
+% Resampling the original signal to match the filters
+
+function resambled = ResambleSignal(signal, originalFs,desiredFs)
+    [p,q] = rat(desiredFs / originalFs);
+    resambled = resample(signal,p,q);
+end
+
+audio_signal_resampled = ResambleSignal(noisy_audio_signal, Fs, Fs_filtros);
 
 % Filter the signal
 filter_response_1 = filter(T1z.Numerator{1}, T1z.Denominator{1}, audio_signal_resampled);
 
 filter_response_2 = filter(T2z.Numerator{1}, T2z.Denominator{1}, audio_signal_resampled);
 
-function resambled = ResambleSignal(signal, originalFs,desiredFs)
-    [p,q] = rat(desiredFs / originalFs);
-    resambled = resample(signal,p,q);
-end 
+
 ```
 
 The filtered channels are then summed and returned to the original rate so that the audio does not suffer from pitch shifting due to the sampling. Also, the amplitude was normalized regarding the original, so that the channel'ss gains sum do not surpass the unitary magnitude.
