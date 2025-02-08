@@ -2,7 +2,7 @@
 
 The primary goal of this project is to create a didactic voice equalizer that can effectively separate and enhance different frequency ranges of human hearing, improving a noisy signal. The equalizer is designed to operate on two channels, corresponding to Bass and Low Medium frequencies. This separation is achieved through the implementation of digital filters based on Butterworth approximations, with the numerical calculations carried out in **MATLAB**. To exemplify the action a song is presented with certain level of noise before and after filtering.
 
-**This guide will show you how to read an audio file, add noise for didactic purposes, design passband filters, filter the audio signal, and plot the results. The project was originally created during my college days with my colleague  ([Guilherme Turatto](https://github.com/guilhermeturatto)) for our Digital Signals Processing grade course mentored by Alexandro Barro Brito in 2021.**
+**This guide will show you how to read an audio file, add noise for didactic purposes, design passband filters, filter the audio signal, and plot the results. The project was originally created during my college days with my friend and colleague [Guilherme Turatto](https://github.com/guilhermeturatto) for our Digital Signals Processing grade course mentored by Alexandro Barro Brito in 2021.**
 
 ## Environment definition
 
