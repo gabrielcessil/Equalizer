@@ -9,7 +9,7 @@ First, we initialize MATLAB and set up the environment:
 - Path for the specific audio file (it can be .ogg, .mp3, etc)
 - The Signal-to-noise (SNR) magnitude that will be added to the audio.
 
-'''matlab
+'''
 % Choose version played:
 % (-1) Noised; (0) Original; (1) Filtered
 version = 1;  
