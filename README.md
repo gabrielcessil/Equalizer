@@ -1,4 +1,4 @@
-# Audio Equalizer and Digital Signal Processin
+# Audio Equalizer and Digital Signal Processing
 
 The primary goal of this project is to create a didactic voice equalizer that can effectively separate and enhance different frequency ranges of human hearing, improving a noisy signal. The equalizer is designed to operate on two channels, corresponding to Bass and Low Medium frequencies. This separation is achieved through the implementation of digital filters based on Butterworth approximations, with the numerical calculations carried out in **MATLAB**. To exemplify the action a song is presented with certain level of noise before and after filtering.
 
