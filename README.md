@@ -75,7 +75,7 @@ tran = 0.2; % Transition band fraction (0~1)
 
 To read the audio and apply the noise:
 
-'''matlab
+```matlab
 % Reading the audio file
 [audio_signal, Fs] = audioread(filename); 
 
@@ -85,7 +85,7 @@ audio_signal = (audio_signal(:,1) + audio_signal(:,2))/ max([audio_signal(:,1).'
 % Add noise for didactic purposes
 Signal_To_Noise_Ratio = 20*log10(SNR);
 noisy_audio_signal = awgn(audio_signal, Signal_To_Noise_Ratio);
-'''
+```
 
 We can find free copyright songs as the one provided here in the link: https://pixabay.com/music/search/music%20with%20lyrics%20contest/
 
@@ -93,17 +93,17 @@ We can find free copyright songs as the one provided here in the link: https://p
 
 Let's create our filters based on their specification:
 
-'''matlab
+```matlab
 % Designing the Analog Passband Filter 
 fprintf('\nBass Frequencies:\n');
 [T1, Ts_filtros1] = PassBand_Butter(Bass, Amax, Amin, tran, GainBass);
 fprintf('\nMedium Frequencies:\n');
 [T2, Ts_filtros2] = PassBand_Butter(LowMedium, Amax, Amin, tran, GainMedium);
-'''
+```
 
 The template is created from the specification.
 
-'''matlab
+```matlab
 function [ws1,wp1,wp2,ws2] = GetBandFrequencySpec(f1,f2,tran)
 
 Hz_to_rads = @(f) 2 * pi * f;
@@ -119,11 +119,11 @@ ws1 = Hz_to_rads(fs1); % Beginnig of transition band (rad/s)
 ws2 = Hz_to_rads(fs2); % End of transition band (rad/s)
 
 end
-'''
+```
 
 The pass-band templates are normalized as lowpass filters in order to estimate the required filter order.
 
-'''matlab
+```matlab
 function [ws_, wp_, w0] = PassBand_to_NormalizedPassLow(ws1, wp1, wp2, ws2)
 
 w0 = sqrt(wp1*wp2);
@@ -131,11 +131,11 @@ ws_ = (ws2-ws1)/(wp2-wp1);
 wp_ = 1;
 
 end
-'''
+```
 
 The 'butter' function provided by MATLAB is useful to quickly create the filters transfer functions, once the filter order, stop and pass frequencies are provided. It recognizes the presence of one or two frequencies of each type to create low-pass or band-pass filter.
 
-'''matlab
+```matlab
 function [T,Ts_filtros] = PassBand_Butter(Band,Amax,Amin,tran, Gain)
 
 % Get the filter template
@@ -165,7 +165,7 @@ fprintf('Passband: %.1f < f < %.1f Hz\n' ,(wp1)/(2*pi), (wp2)/(2*pi));
 fprintf('Stopbands: %.1f < f, f > %.1f Hz\n', (ws1)/(2*pi), (ws2)/(2*pi));
 
 end 
-'''
+```
 
 The transfer functions are calculated using Butterworth method due to its monotonic and predictable amplitude response in the passband. For instance, while filters like Chebyshev can achieve the same attenuation with lower degree, this result comes at the cost of a higher passband oscillation.
 
@@ -177,7 +177,7 @@ The original sampling rate of 48k Hz could lead the filtered signal to oversampl
 The multi-sampling complexity can be avoided using the same rate for both filters if there is a common feasible value. In this context, the maximum sampling rate is feasible for both filter bands. This value is then adjusted to be an integer divisor of the original audio sampling rate, simplifying the resampling step in possible embedded implementations.
 
 
-'''matlab
+```matlab
 % Estimating the new sampling time for the filtering as multiple of Ts
 
 Ts_filtros = Ts*floor(min([Ts_filtros1 Ts_filtros2])/Ts);
@@ -187,20 +187,20 @@ Fs_filtros = 1/Ts_filtros;
 fprintf('\nOriginal signal sampling time: %.3f us\n', Ts*10^6);
 
 fprintf('\nFiltering sampling time: %.3f us\n', Ts_filtros*10^6);
-'''
+```
 
 The transferfunctions are then denormalized and transformed from analog to digital using common sampling rate.
 
-'''matlab
+```matlab
 % Discretinzing the analog filters
 T1z = c2d(T1, Ts_filtros, 'zoh');
 T2z = c2d(T2, Ts_filtros, 'zoh');
-'''
+```
 
 
 The filtered responses are computed with the MATLAB function 'filter' regarding a resampled version of the original audio signal that matches the channel's common sampling rate.
 
-'''matlab
+```matlab
 % Resampling the original signal to match the filtersaudio_signal_resampled = ResambleSignal(noisy_audio_signal, Fs, Fs_filtros);
 
 % Filter the signal
@@ -212,11 +212,11 @@ function resambled = ResambleSignal(signal, originalFs,desiredFs)
     [p,q] = rat(desiredFs / originalFs);
     resambled = resample(signal,p,q);
 end 
+```
 
-'''
 The filtered channels are then summed and returned to the original rate so that the audio does not suffer from pitch shifting due to the sampling. Also, the amplitude was normalized regarding the original, so that the channel'ss gains sum do not surpass the unitary magnitude.
 
-'''matlab
+```matlab
 % Combining filtered channels
 signal_out = filter_response_1 + filter_response_2;
 
@@ -225,11 +225,11 @@ signal_out = (signal_out / max(signal_out)) * max(noisy_audio_signal);
 
 % Resampling the output to match the original sampling
 signal_out_resampled = ResambleSignal(signal_out, Fs_filtros, Fs);
-'''
+```
 
 Finally, the filtered version is playable.
 
-'''matlab
+```matlab
 % Play audios according to selected audio 'version'
 if version > 0
     sound(signal_out_resampled, Fs);
@@ -238,7 +238,7 @@ elseif version < 0
 else
     sound(audio_signal, Fs);
 end
-'''
+```
 
 We can plot the signal's magnitude variations over time, offering a comprehensive visual representation of the various stages of the audio processing pipeline.
 
