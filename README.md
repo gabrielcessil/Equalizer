@@ -1,6 +1,8 @@
-The primary goal of this project is to create a didactic voice equalizer that can effectively separate and enhance different frequency ranges of human hearing, improving a noisy signal. The equalizer is designed to operate on two channels, corresponding to Bass and Low Medium frequencies. This separation is achieved through the implementation of digital filters based on Butterworth approximations, with the numerical calculations carried out in MATLAB. To exemplify the action a song is presented with certain level of noise before and after filtering.
+# Audio Equalizer and Digital Signal Processin
 
-This guide will show you how to read an audio file, add noise for didactic purposes, design passband filters, filter the audio signal, and plot the results. The project was originally created during my college days with my colleague Guilherme Turatto for our Digital Signals Processing grade course mentored by Alexandro Barro Brito.
+The primary goal of this project is to create a didactic voice equalizer that can effectively separate and enhance different frequency ranges of human hearing, improving a noisy signal. The equalizer is designed to operate on two channels, corresponding to Bass and Low Medium frequencies. This separation is achieved through the implementation of digital filters based on Butterworth approximations, with the numerical calculations carried out in **MATLAB**. To exemplify the action a song is presented with certain level of noise before and after filtering.
+
+**This guide will show you how to read an audio file, add noise for didactic purposes, design passband filters, filter the audio signal, and plot the results. The project was originally created during my college days with my colleague Guilherme Turatto for our Digital Signals Processing grade course mentored by Alexandro Barro Brito in 2021.**
 
 ## Environment definition
 
@@ -39,23 +41,23 @@ Let 'n' be the resulting required degree, 'Amax' the maximum ripple, 'Amin' the 
 
 From the Butterworth design equations, we have that the minimum degree is:
 
-n = ceil( $latex log_{\hat{w_{s}}}(\frac{e}{E})$ )
+$$n = ceil(  log_{\hat{w_{s}}}(\frac{e}{E}) )$$
 
-where: e = $latex 10^{\frac{Amin}{10}}-1$ and E = $latex 10^{\frac{Amax}{10}}-1$
+where: $$e = 10^{\frac{Amin}{10}}-1$$ and E = $latex 10^{\frac{Amax}{10}}-1$
 
 From the template of passlow to passband, we have that the normalized pass frequency is:
 
-$latex \hat{w_{s}} =  \frac{w_{s2}-w_{s1}}{w_{p2}-w_{p1}}$
+$$ \hat{w_{s}} =  \frac{w_{s2}-w_{s1}}{w_{p2}-w_{p1}}$$
 
 Let's simplify this expression making $latex \hat{w_{s}}$ be function of the size of the transient band we defined ('tran'), as follows:
 
-$latex w_{s1} = w_{p1}+\frac{tran}{2}\Delta w_{p}$
+$$ w_{s1} = w_{p1}+\frac{tran}{2}\Delta w_{p}$$
 
-and $latex w_{s1} = w_{p2}-\frac{tran}{2}\Delta w_{p}$ 
+and $$ w_{s1} = w_{p2}-\frac{tran}{2}\Delta w_{p}$$
 
-where $latex \Delta w_{p} = w_{p2}-w_{p1}$ is the total work band size of the filter. Manipulating the equations, we find that for this equally spaced transient bands:
+where $$ \Delta w_{p} = w_{p2}-w_{p1}$$ is the total work band size of the filter. Manipulating the equations, we find that for this equally spaced transient bands:
 
-$latex \hat{w_{s}} = (1+tran)$
+$$ \hat{w_{s}} = (1+tran)$$
 
 To improve our control of our settings, we can now plot the 'n' magnitude for multiple transients lenghts according to the relative value
 
